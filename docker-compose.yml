@@ -21,11 +21,18 @@ services:
       - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_DATE_FORMATS_USE_BROWSER_LOCALE=true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
+      - grafana_data:/var/lib/grafana
     networks:
       - monitoring
 
 networks:
   monitoring:
     driver: bridge
+
+volumes:
+  grafana_data:

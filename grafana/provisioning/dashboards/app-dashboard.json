@@ -1,0 +1,25 @@
+{
+  "title": "App Observability Dashboard",
+  "panels": [
+    {
+      "title": "Total Requests",
+      "type": "stat",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "targets": [{"expr": "app_requests_total", "refId": "A"}]
+    },
+    {
+      "title": "Request Rate (per second)",
+      "type": "timeseries",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "targets": [{"expr": "rate(app_requests_total[5m])", "refId": "A"}]
+    },
+    {
+      "title": "Average Request Latency",
+      "type": "gauge",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
+      "targets": [{"expr": "rate(app_request_latency_seconds_sum[5m]) / rate(app_request_latency_seconds_count[5m])", "refId": "A"}]
+    }
+  ],
+  "schemaVersion": 38,
+  "version": 1
+}
